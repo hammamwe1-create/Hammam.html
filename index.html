@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NEON DREAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800;900&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{overflow:hidden;font-family:'Tajawal',system-ui,sans-serif;background:#000;
+  --nb:#fff;--nf:#0b3a6e;--na:#ff1f8e;--naf:#fff}
+body[data-p="1"]{--nb:#0a1240;--nf:#7fb0ff;--na:#ff8a1f;--naf:#05060f}
+body[data-p="2"]{--nb:#ffe3f1;--nf:#0a1f8f;--na:#ff9ed2;--naf:#0a1f8f}
+.orb-font,h1,h2,nav button,.tag,.btn{font-family:'Orbitron','Tajawal',sans-serif}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:center;gap:8px;
+  padding:calc(12px + env(safe-area-inset-top,0px)) 12px 12px}
+nav button{border:0;cursor:pointer;padding:10px 18px;font-size:12px;font-weight:800;letter-spacing:.08em;
+  background:var(--nb);color:var(--nf);transition:.3s;
+  clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+nav button[aria-current="true"]{background:var(--na);color:var(--naf);box-shadow:0 0 18px var(--na)}
+.arrow{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:10;width:52px;height:52px;border:0;cursor:pointer;
+  font-size:20px;background:var(--na);color:var(--naf);transition:.3s;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.arrow.l{left:16px}.arrow.r{right:16px}
+.arrow[hidden]{display:none}
+
+/* track */
+#track{display:flex;width:300vw;height:100dvh;transform:translateX(calc(var(--i,0) * -100vw));
+  transition:transform .9s cubic-bezier(.77,0,.18,1)}
+.pg{flex:0 0 100vw;height:100dvh;overflow-y:auto;overflow-x:hidden;position:relative;padding:96px 6vw 100px}
+.wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;min-height:100%;display:grid;align-items:center;
+  grid-template-columns:1.1fr .9fr;gap:30px}
+@media(max-width:800px){.wrap{grid-template-columns:1fr}}
+.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.14em;padding:6px 14px;margin-bottom:16px;
+  clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+h1{font-weight:900;line-height:.95;font-size:clamp(46px,10vw,112px);margin-bottom:16px}
+h2{font-weight:900;font-size:clamp(30px,6vw,64px);margin-bottom:14px;line-height:1}
+p.lead{font-size:clamp(16px,2.2vw,20px);line-height:1.8;max-width:520px;margin-bottom:22px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{border:0;cursor:pointer;text-decoration:none;display:inline-block;font-weight:800;font-size:13px;letter-spacing:.06em;
+  padding:14px 24px;transition:transform .2s,box-shadow .2s;
+  clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px)}
+.btn:hover{transform:translateY(-3px)}
+.cut{clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,24px 100%,0 calc(100% - 24px))}
+.abs{position:absolute;pointer-events:none}
+
+/* ===== PAGE 1: sky blue / white / hot pink ===== */
+.p1{color:#0b3a6e;
+  background:
+   radial-gradient(circle at 82% 18%,#fff 0,rgba(255,255,255,0) 32%),
+   radial-gradient(circle at 10% 95%,rgba(255,31,142,.45) 0,rgba(255,31,142,0) 45%),
+   linear-gradient(165deg,#e4f6ff 0%,#a8e2ff 28%,#5cc4ff 58%,#2f9cf2 80%,#ff6fb5 135%)}
+.p1::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px) 0 0/48px 48px,
+             linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px) 0 0/48px 48px;
+  -webkit-mask-image:linear-gradient(#000,transparent 85%);mask-image:linear-gradient(#000,transparent 85%)}
+.p1 h1{color:#fff;-webkit-text-stroke:2px #0b3a6e;paint-order:stroke fill;text-shadow:6px 6px 0 #ff1f8e,12px 12px 0 rgba(11,58,110,.25)}
+.p1 .tag{background:#ff1f8e;color:#fff}
+.p1 .btn.a{background:#ff1f8e;color:#fff;box-shadow:0 0 0 3px #fff inset}
+.p1 .btn.b{background:#fff;color:#0b3a6e}
+.cloud{background:#fff;border-radius:100px;height:46px;width:170px;opacity:.9;animation:drift 18s linear infinite alternate}
+.cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud::before{width:70px;height:70px;left:26px;top:-34px}
+.cloud::after{width:50px;height:50px;left:90px;top:-22px}
+@keyframes drift{to{transform:translateX(60px)}}
+.orb{position:relative;width:min(360px,80vw);aspect-ratio:1;margin:0 auto}
+.orb i{position:absolute;border-radius:50%}
+.r1{inset:0;border:3px dashed #fff;animation:spin 30s linear infinite}
+.r2{inset:9%;border:4px solid #ff1f8e;border-right-color:transparent;border-bottom-color:transparent;animation:spin 8s linear infinite reverse;box-shadow:0 0 18px #ff1f8e}
+.r3{inset:18%;border:2px solid #0b3a6e}
+.hex{position:absolute;inset:26%;display:grid;place-items:center;font-size:clamp(50px,9vw,90px);color:#fff;font-weight:900;
+  background:linear-gradient(145deg,#3fb4ff,#1478d6 55%,#ff1f8e);
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);filter:drop-shadow(0 0 14px #fff)}
+.spk{position:absolute;color:#fff;text-shadow:0 0 10px #ff1f8e,0 0 3px #ff1f8e;animation:tw 2.4s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes tw{50%{transform:scale(.5) rotate(45deg);opacity:.5}}
+.chip{position:absolute;background:#fff;color:#0b3a6e;font:800 11px 'Orbitron',sans-serif;padding:8px 14px;
+  clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);box-shadow:0 0 0 2px #ff1f8e inset}
+
+/* ===== PAGE 2: midnight / electric blue / cantaloupe ===== */
+.p2{color:#e8f0ff;background:linear-gradient(#02030a 0%,#060b26 50%,#0b1654 100%)}
+#fx{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.sun{left:50%;bottom:9%;width:min(52vmin,420px);aspect-ratio:1;border-radius:50%;transform:translateX(-50%);
+  background:linear-gradient(#ffe0b8 0%,#ffb066 30%,#ff8a2b 62%,#ff5a1f 100%);box-shadow:0 0 80px rgba(255,138,43,.55);opacity:.9}
+.sun::after{content:"";position:absolute;left:0;right:0;top:48%;bottom:0;border-radius:0 0 50% 50%;
+  background:repeating-linear-gradient(transparent 0 9px,#0a1244 9px 14px)}
+.floor{left:-50%;right:-50%;bottom:0;height:34%;transform:perspective(260px) rotateX(62deg);transform-origin:bottom;
+  background:linear-gradient(rgba(45,107,255,.8) 2px,transparent 2px) 0 0/100% 44px,
+             linear-gradient(90deg,rgba(45,107,255,.8) 2px,transparent 2px) 0 0/64px 100%;
+  animation:fl 1.4s linear infinite;box-shadow:inset 0 80px 80px -40px #0b1654}
+@keyframes fl{to{background-position:0 44px,0 0}}
+.tri{width:0;height:0;border-left:var(--s) solid transparent;border-right:var(--s) solid transparent;border-bottom:calc(var(--s)*1.7) solid var(--c);
+  filter:drop-shadow(0 0 10px var(--c));animation:fy 6s ease-in-out infinite alternate}
+@keyframes fy{to{transform:translateY(-26px) rotate(8deg)}}
+.p2 .wrap{display:block;padding-top:10px}
+.p2 h2{color:#fff;text-shadow:0 0 12px #2d6bff,0 0 32px #2d6bff,4px 4px 0 #ff8a1f}
+.p2 .tag{background:#2d6bff;color:#fff;box-shadow:0 0 16px #2d6bff}
+.slider{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px 4px 30px;scrollbar-width:thin;scrollbar-color:#ff8a1f #0a1240}
+.card{flex:0 0 min(300px,78vw);scroll-snap-align:start;padding:3px;background:linear-gradient(135deg,#2d6bff,#00c3ff);transition:transform .3s}
+.card:nth-child(even){background:linear-gradient(135deg,#ff8a1f,#ffc38a)}
+.card:hover{transform:translateY(-6px)}
+.card div{background:linear-gradient(160deg,#0a1240,#04061a);padding:22px;height:100%;min-height:250px}
+.card b{font:800 18px 'Orbitron',sans-serif;display:block;margin:16px 0 8px;color:#fff}
+.card span{font-size:15px;line-height:1.7;color:#b9cbff}
+.ico{width:58px;height:58px;background:linear-gradient(145deg,#00c3ff,#2d6bff);box-shadow:0 0 18px #2d6bff}
+.card:nth-child(even) .ico{background:linear-gradient(145deg,#ffc38a,#ff6a1f);box-shadow:0 0 18px #ff8a1f}
+.ico.t1{clip-path:polygon(50% 0,100% 100%,0 100%)}
+.ico.t2{clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.ico.t3{border-radius:50%}
+.ico.t4{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+
+/* ===== PAGE 3: deep blue / pure white / bubblegum pink ===== */
+.p3{color:#fff;
+  background:
+   radial-gradient(circle at 18% 88%,rgba(255,158,210,.55) 0,rgba(255,158,210,0) 42%),
+   radial-gradient(circle at 85% 10%,rgba(255,255,255,.22) 0,rgba(255,255,255,0) 30%),
+   linear-gradient(180deg,#040c45 0%,#0a1f8f 42%,#1535c9 72%,#4d62ee 100%)}
+.p3 .wrap{grid-template-columns:1fr}
+.p3 .in{text-align:center;max-width:640px;margin:0 auto}
+.p3 h2{text-shadow:0 0 18px rgba(255,255,255,.6),5px 5px 0 #ff9ed2}
+.p3 .tag{background:#fff;color:#0a1f8f}
+.p3 .lead{margin-inline:auto}
+.pill{display:inline-block;text-decoration:none;font:800 13px 'Orbitron',sans-serif;padding:15px 28px;border-radius:999px;
+  background:linear-gradient(135deg,#ffc4e1,#ff9ed2 60%,#ff7fbf);color:#0a1f8f;box-shadow:0 8px 0 #c9438f,0 0 24px rgba(255,158,210,.7);transition:.2s}
+.pill:hover{transform:translateY(4px);box-shadow:0 4px 0 #c9438f,0 0 30px rgba(255,158,210,.9)}
+.pill.w{background:linear-gradient(135deg,#fff,#dfe6ff);box-shadow:0 8px 0 #7d8cf0,0 0 24px rgba(255,255,255,.6)}
+.bub{border-radius:50%;background:radial-gradient(circle at 30% 28%,#fff 0,#ffd6ea 22%,#ff9ed2 58%,#ff7fbf 100%);
+  box-shadow:0 0 28px rgba(255,158,210,.6);animation:fy 7s ease-in-out infinite alternate}
+.bub.o{background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.7),rgba(255,255,255,.06) 60%);border:2px solid rgba(255,255,255,.75);box-shadow:none}
+.moon{width:96px;height:96px;border-radius:50%;box-shadow:inset -26px -8px 0 0 #fff,0 0 30px rgba(255,255,255,.5);animation:fy 8s ease-in-out infinite alternate}
+.heart{color:#ff9ed2;text-shadow:0 0 16px #ff9ed2;animation:tw 3s ease-in-out infinite}
+.wave{left:0;right:0;bottom:0;height:90px;opacity:.9}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body data-p="0">
+
+<nav aria-label="Pages">
+  <button data-go="0" aria-current="true">HOME</button>
+  <button data-go="1">WORKS</button>
+  <button data-go="2">CONTACT</button>
+</nav>
+<button class="arrow l" id="prev" aria-label="Previous" hidden>◀</button>
+<button class="arrow r" id="next" aria-label="Next">▶</button>
+
+<main id="track">
+
+<!-- PAGE 1 -->
+<section class="pg p1" id="home">
+  <div class="abs cloud" style="top:14%;left:4%"></div>
+  <div class="abs cloud" style="top:62%;right:6%;transform:scale(.7)"></div>
+  <div class="wrap">
+    <div>
+      <span class="tag">夢 // DREAM.EXE</span>
+      <h1>YOUR<br>NAME</h1>
+      <p class="lead">أهلاً! هذا موقعي بطابع سايبر بنك أنمي. غيّر هذا النص بمعلوماتك: شنو تسوي، شنو تحب، وشنو تشتغل عليه.</p>
+      <div class="row">
+        <button class="btn a" data-go="1">شوف أعمالي</button>
+        <button class="btn b" data-go="2">تواصل وياي</button>
+      </div>
+    </div>
+    <div class="orb" aria-hidden="true">
+      <i class="r1"></i><i class="r2"></i><i class="r3"></i>
+      <div class="hex">夢</div>
+      <span class="spk" style="top:2%;left:12%;font-size:34px">✦</span>
+      <span class="spk" style="top:70%;right:2%;font-size:26px;animation-delay:.8s">✦</span>
+      <span class="spk" style="top:90%;left:30%;font-size:20px;animation-delay:1.4s">✧</span>
+      <span class="chip" style="top:10%;right:-4%">LV.99</span>
+      <span class="chip" style="bottom:8%;left:-4%">ONLINE</span>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="pg p2" id="works">
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="abs sun" style="z-index:0"></div>
+  <div class="abs floor" style="z-index:0"></div>
+  <div class="abs tri" style="--s:22px;--c:#00c3ff;top:20%;right:10%;z-index:1"></div>
+  <div class="abs tri" style="--s:14px;--c:#ff8a1f;top:55%;left:5%;z-index:1;animation-delay:1s"></div>
+  <div class="wrap">
+    <div>
+      <span class="tag">作品 // WORKS</span>
+      <h2>MY WORKS</h2>
+      <p class="lead">اسحب الكروت يمين ويسار. كل كرت يمثل مشروع من مشاريعك.</p>
+      <div class="slider" tabindex="0" aria-label="Projects">
+        <div class="card cut"><div class="cut"><i class="ico t1 abs" style="position:static;display:block"></i><b>NEON DRIFT</b><span>وصف قصير للمشروع الأول. اكتب هنا شنو سويت وبأي أدوات.</span></div></div>
+        <div class="card cut"><div class="cut"><i class="ico t2" style="display:block"></i><b>GHOST CIRCUIT</b><span>وصف قصير للمشروع الثاني. تقدر تضيف رابط GitHub بكل كرت.</span></div></div>
+        <div class="card cut"><div class="cut"><i class="ico t3" style="display:block"></i><b>RAMEN PROTOCOL</b><span>وصف قصير للمشروع الثالث. غيّر الاسم والنص مثل ما تريد.</span></div></div>
+        <div class="card cut"><div class="cut"><i class="ico t4" style="display:block"></i><b>MIDNIGHT KEY</b><span>وصف قصير للمشروع الرابع. انسخ الكرت وكرر حسب الحاجة.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="pg p3" id="contact">
+  <div class="abs moon" style="top:14%;left:8%"></div>
+  <div class="abs bub" style="width:90px;height:90px;top:62%;left:7%"></div>
+  <div class="abs bub o" style="width:150px;height:150px;top:18%;right:6%;animation-delay:1s"></div>
+  <div class="abs bub" style="width:46px;height:46px;top:70%;right:14%;animation-delay:2s"></div>
+  <div class="abs bub o" style="width:60px;height:60px;top:40%;left:18%;animation-delay:3s"></div>
+  <span class="abs heart" style="top:30%;right:22%;font-size:38px">♥</span>
+  <span class="abs heart" style="top:80%;left:30%;font-size:24px;animation-delay:1s">♥</span>
+  <span class="abs spk" style="top:12%;left:46%;font-size:30px;color:#fff;text-shadow:0 0 12px #ff9ed2;animation:tw 2.4s infinite">✦</span>
+  <svg class="abs wave" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 50 Q150 10 300 50 T600 50 T900 50 T1200 50 V90 H0Z" fill="#ff9ed2" fill-opacity=".55"/>
+    <path d="M0 65 Q150 30 300 65 T600 65 T900 65 T1200 65 V90 H0Z" fill="#fff" fill-opacity=".9"/>
+  </svg>
+  <div class="wrap">
+    <div class="in">
+      <span class="tag">連絡 // CONTACT</span>
+      <h2>SAY HELLO</h2>
+      <p class="lead">تريد نشتغل سوا أو بس تسولف؟ اختار الطريقة اللي تريحك، وغيّر الروابط بروابطك.</p>
+      <div class="row" style="justify-content:center;gap:18px">
+        <a class="pill" href="https://github.com/" target="_blank" rel="noopener">GITHUB</a>
+        <a class="pill w" href="https://discord.com/" target="_blank" rel="noopener">DISCORD</a>
+        <a class="pill" href="https://instagram.com/" target="_blank" rel="noopener">INSTAGRAM</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const names=['home','works','contact'],track=document.getElementById('track'),
+  btns=[...document.querySelectorAll('nav button')],prev=document.getElementById('prev'),next=document.getElementById('next');
+let cur=0;
+function go(n){
+  cur=Math.max(0,Math.min(2,n));
+  document.body.dataset.p=cur;
+  track.style.setProperty('--i',cur);
+  btns.forEach((b,k)=>b.setAttribute('aria-current',k===cur));
+  prev.hidden=cur===0;next.hidden=cur===2;
+  try{history.replaceState(null,'','#'+names[cur])}catch(e){}
+}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t)go(+t.dataset.go)});
+prev.onclick=()=>go(cur-1);next.onclick=()=>go(cur+1);
+addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+let sx=0,sy=0;
+addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+addEventListener('touchend',e=>{
+  if(e.target.closest('.slider'))return;
+  const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+  if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)go(cur+(dx<0?1:-1));
+},{passive:true});
+const h=names.indexOf(location.hash.slice(1));if(h>0)go(h);else go(0);
+
+/* particles (page 2) */
+const c=document.getElementById('fx'),x=c.getContext('2d'),cols=['#2d6bff','#00c3ff','#ff8a1f','#ffc38a'];
+let W,H,P=[];
+function size(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;
+  P=Array.from({length:Math.min(90,Math.floor(W*H/14000))},()=>({x:Math.random()*W,y:Math.random()*H,
+    r:Math.random()*2.6+.8,vx:(Math.random()-.5)*.5,vy:-(Math.random()*.7+.15),c:cols[Math.random()*4|0]}))}
+function draw(){
+  requestAnimationFrame(draw);
+  if(cur!==1||!W)return;
+  x.clearRect(0,0,W,H);
+  for(const p of P){
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.y<-5){p.y=H+5;p.x=Math.random()*W}
+    if(p.x<-5)p.x=W+5;if(p.x>W+5)p.x=-5;
+    x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);x.fillStyle=p.c;x.shadowColor=p.c;x.shadowBlur=12;x.fill();
+  }
+  x.shadowBlur=0;
+  for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){
+    const dx=P[i].x-P[j].x,dy=P[i].y-P[j].y,d=dx*dx+dy*dy;
+    if(d<9000){x.strokeStyle='rgba(0,195,255,'+(.25*(1-d/9000))+')';x.beginPath();x.moveTo(P[i].x,P[i].y);x.lineTo(P[j].x,P[j].y);x.stroke()}
+  }
+}
+addEventListener('resize',size);size();draw();
+</script>
+</body>
+</html>
